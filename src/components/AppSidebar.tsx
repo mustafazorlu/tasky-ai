@@ -67,7 +67,10 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <Collapsible className='group/collapsible' defaultOpen>
+        <Collapsible
+          className='group/collapsible'
+          defaultOpen
+        >
           <SidebarGroup>
             <SidebarGroupLabel
               asChild
