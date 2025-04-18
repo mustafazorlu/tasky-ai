@@ -78,6 +78,16 @@ const TaskForm: React.FC<TaskFormProps> = ({
     }));
   }, [taskContent, dueDate, projectId]);
 
+  useEffect(() => {
+    const chronoParsed = chrono.parse(taskContent);
+
+    if (chronoParsed.length) {
+      const lastDate = chronoParsed[chronoParsed.length - 1];
+
+      setDueDate(lastDate.date());
+    }
+  }, [taskContent]);
+
   const handleSubmit = useCallback(() => {
     if (!taskContent) return;
 
@@ -98,6 +108,12 @@ const TaskForm: React.FC<TaskFormProps> = ({
             autoFocus
             value={taskContent}
             onInput={(e) => setTaskContent(e.currentTarget.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSubmit();
+              }
+            }}
           />
 
           <div className='ring-1 ring-border rounded-md max-w-max'>
@@ -152,7 +168,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
         <Separator />
 
-        <CardFooter className='grid grid-cols-[minmax(0,1fr), max-content] gap-2 p-2'>
+        <CardFooter className='grid grid-cols-[minmax(0,1fr)_max-content] gap-2 p-2'>
           <Popover
             open={projectOpen}
             onOpenChange={setProjectOpen}
@@ -162,8 +178,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
               <Button
                 variant={'ghost'}
                 role='combobox'
-                aria-expanded={false}
-                className='max-wmax'
+                aria-expanded={projectOpen}
+                className='max-w-max'
               >
                 <Inbox /> Inbox <ChevronDown />
               </Button>

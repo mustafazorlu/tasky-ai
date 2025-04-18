@@ -12,8 +12,10 @@ const AppLayout = () => {
           disableHoverableContent
         >
           <AppSidebar />
-          <SidebarTrigger />
-          <Outlet />
+          {/* <SidebarTrigger /> */}
+          <main className='flex-1'>
+            <Outlet />
+          </main>
         </TooltipProvider>
       </SidebarProvider>
     </>

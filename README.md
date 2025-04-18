@@ -54,3 +54,4 @@ export default tseslint.config({
 ```
 
 2.14.06
+3.20.36

@@ -1,9 +1,15 @@
-import React from 'react'
+import Head from '@/components/Head';
+import TopAppBar from '@/components/TopAppBar';
+import React from 'react';
 
 const InboxPage = () => {
   return (
-    <div>InboxPage</div>
-  )
-}
+    <div>
+      <Head title='Inbox - Tasky AI'></Head>
 
-export default InboxPage
+      <TopAppBar title='Inbox' taskCount={20} />
+    </div>
+  );
+};
+
+export default InboxPage;
